@@ -1,0 +1,53 @@
+README cartoon
+
+Disclaimer: I'm so sorry, my images were too big so I had to compress them and resubmit. I'm just a few minutes late off
+the regular deadline.
+
+PERSONAL CONNECTION:
+I had my first ever research project in Elementary School where I researched about the endangered sea turtles. I
+remember watching a documentary and learning how baby turtles hatch on the ocean shore and must blindly find their way
+to the ocean. However, thousands of baby turtles are hunted by the flying seagulls overhead before they can make it to
+the ocean. I remember being fascinated by the fact that the first thing baby turtles do after they're born is fight for
+their survival. This fact stuck with me for many years until high school where I did more in depth research on this
+topic and learned about issues like the effects of light pollution on the increased death of baby sea turtles.
+Consequently, many pieces in my art portfolio ended up being about sea turtles and the several environmental issues
+they face. My game/cartoon is an homage to this amazing natural phenomenon that sparked my interest in environmental
+sciences.
+
+OVERVIEW:
+My cartoon program has 16 classes in total: App, PaneOrganizer, Cartoon, Turtle,
+Seagull, Image, ImageView, Pane, BorderPane, Slider, Label, Circle, Ellipse, Line, Rotate, and DropShadow.
+They interact in the following ways:
+- App contains the top-level graphic class PaneOrganizer
+- PaneOrganizer contains the top-level logic class Cartoon
+- PaneOrganizer contains an instance of Cartoon, Image, Pane, and BorderPane
+- Cartoon contains an instance of Turtle, Slider, and multiple instances of Label, Pane, and Seagull.
+- Turtle contains an instance of DropShadow and multiple instances of Circle, Line, Rotate, and Ellipse.
+- Seagull contains an instance of Image and ImageView.
+
+DESIGN CHOICES:
+helper methods, getters, setters, visual changes, key inputs
+I have several important helper methods including methods that help set the location of the seagull and turtle based
+on keyInput. The updateSeagull method has several crucial helper methods include setter methods that help set the
+rotation of the seagull and based on the rotation of the seagull, the seagull moves a certain direction. The turtle
+moves based on key input (up, down, left, right keys). The positions of the turtle and seagulls are set dynamically
+through public setter and getter methods within the Turtle and Seagull classes. The labels are also updated dynamically
+through instance variables that change based on a certain behavior (if, else if statements), for example, the Total
+Rounds Made by Seagulls is updated based on a counter that increases everytime the seagull changes directions. The
+Baby Turtles Survived is also updated based on if the turtle hits an end point (the ocean) which is the objective of the
+game. Collisions are also checked by getting the bounds of the seagull and turtles and seeing if they intersect.
+These behaviors that need to be checked and updated throughout the game are done through the timeline. The speed of the
+seagull also changes based on the value of the slider that represents the level of difficulty. In general, I used a lot
+of if statements to assist in my program.
+
+KNOWN BUGS:
+There is a bug where an error appears called "TSM AdjustCapsLockLEDForKeyTransitionHandling -
+_ISSetPhysicalKeyboardCapsLockLED Inhibit" everytime the program runs. The only solution to removing the error
+is changing the Keyboard settings in your Mac and manually toggling off the CAPS Lock option in the keyboard. I also
+ran into another issue where my slider interferes with my key input. When you move the slider, the focus is set on the
+slider and key input is no longer detected and the turtle can no longer move. To remove focus on the slider you need to
+press the down key (sometimes this doesn't work either). I attempted to solve this bug through several means (EdStem,
+Debugging Hours, research) but cannot seem to solve it.
+
+HOURS SPENT:
+Answer: 12

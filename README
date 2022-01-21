@@ -1,0 +1,54 @@
+README evolution
+
+OVERVIEW:
+My evolution program contains 4 main Arcade classes with 4 other packages each with their individual top-level graphical
+and logical classes.
+They interact in the following ways:
+- App contains the top-level graphical and logical Arcade class
+- Arcade class contains Buttons, images, and the enum ArcadeGame class which contains the PaneOrganizers for all the
+other Arcade Games whose top-level graphical classes (DoodleJumpGame, FlappyBirdGame, TetrisGame, Cartoon) all implement
+the Playable interface
+- For Flappy Bird, the FlappyBirdGame top-level logic class contains multiple instances of Pipe
+-FlappyBirdGame is associated with the enum GameMode class that contains multiple instances of FlappyBird and Generation
+- FlappyBird is the superclass of SmartFlappyBird
+-Generation contains multiple instance of SmartFlappyBird which contains an instance of NeuralNetwork
+- FlappyBird and SmartFlappyBird are both associated with Pipe
+- All these classes contains various instances of JavaFX classes such as Image, Label, Pane, Button, etc.
+
+DESIGN CHOICES:
+Manual and Multiplayer Flappy Bird have very similar functionalities in terms of game updating and logic behind score
+updating. Both are played through player key input. The main difference between the two are the number of birds in the game
+and when game over is called and how the high score is updated. Smart FlappyBird is a lot more different where the birds
+must know how to jump themselves. The statistics of the game are not score based/player based but rather reflect
+the behavior of the self-independent birds. This is why there are many similarities between the code of Manual and Multiplayer
+FlappyBird in the GameMode class and Smart Flappy Bird requires more delegation and methods. The differences are handles through
+an enum containing the constants: MANUAL, MULTIPLAYER, and SMART. Methods correspond to the differences in the code
+for the game modes but several times Manual and Multiplayer will have the same code for their case and SMART requires an
+additional case in the switch statement. FlappyBird is the superclass of SmartFlappyBird betwen SmartFlappyBird contains
+the same necessities for FlappyBird in terms of graphics and basic movement updating. SmartFlappyBird is contained within
+Generation that wraps the 50 instaces of SmartFlappyBird when a new generation is created. I also used constructor overloading
+to model the different needs for the classes for when a completely new generation of birds needs to be created (restarting
+the game manually) or when the games autorestart and the Generation of birds takes in the best weights of the birds
+in the Previous generation. Constructor overloading is an effective way to model these differences because the differences
+in parameters allows for efficient instantiation. The overloading follows through in SmartFlappyBird and NeuralNetwork
+where the math in NeuralNetwork remains the same, however one constructor creates a new set of randomized weights while
+the overload constructor mutates the weights that are passed in as arguments in the constructor. The birds learn across
+generations by taking in data from previous generations and mutating them properly based on the fitness of previous generations.
+Interfaces are also used to optimize the link between classes such as the Playable interface for Arcade Games since
+the Arcade Games all share a few similar functionalities and also share one timeline and one game status label. They also
+all contain the same maneuvering buttons across Arcades.
+
+KNOWN BUGS:
+There is a bug where an error appears called "TSM AdjustCapsLockLEDForKeyTransitionHandling -
+_ISSetPhysicalKeyboardCapsLockLED Inhibit" everytime the program runs. The only solution to removing the error
+is changing the Keyboard settings in your Mac and manually toggling off the CAPS Lock option in the keyboard. I also
+have another bug where the number alive does not go all the way down to zero. Some birds are also not graphically
+removed properly from the game when the restart button is pressed. I think this has something to do with the constant
+changing initializing of Generation and FlappyBird that not all the birds are iterated through and responding properly
+to graphical and logical removal.
+
+HOURS SPENT:
+Answer: 50
+
+DEBUGGING COLLABORATORS:
+nli24

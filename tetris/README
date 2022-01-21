@@ -1,0 +1,43 @@
+Overview:
+
+The tetris program features 6 main classes.
+1.	The first class is the App class that essentially calls the start method which creates an instance of the PaneOrganizer,
+a scene, and gets the stage to show the scene consisting of one borderpane.
+2.	The second class is the PaneOrganizer class which is the top level graphical class. Here, all the graphical elements
+are created and set up, including the gamePane and the buttonPane as well as the various labels and buttons that sit upon the larger
+graphical elements. Finally, an instance of the TetrisGame class is instantiated.
+3.	The third class is the TetrisGame Class which is the top level logical class. It handles the majority of the interactions between
+different classes. This is where the board, piece, and timeline are instantiated. It also handles a majority of the logic such as assigning
+the graphical pieces a logical purpose, updating piece movement and key input, as well as maintaining the various actions for the timeline.
+4.	The fourth class is the Board class which is made up of a 2D array of the Square class. It also contains a Boolean
+2D array for movement called isFilled. Important methods here include the clearing of lines and determining the move validity
+that serves as the basis for many piece movements.
+5.	The fifth class is the piece class which is made up of a 1D array of the Square class. This class contains methods for the
+random generation of pieces and various movements for translational and rotational movement.
+6.	The sixth class is the Square class that forms the basis for the Board and piece. It is a wrapper class for the JavaFX
+element, rectangle. By default, it creates a black square of certain size and location and can add/remove itself from the pane.
+
+Another class to note is the Difficulty class, which is an enum consisting of Easy, Medium, and Hard.
+This class includes two methods mainly for manipulating the timeline and scoring based on which difficulty is selected.
+
+Design Choices:
+Our program focused on delegating the work equally between classes. For example: although updating the board, resetting the board,
+and clearing lines could be a logical task for the TetrisGame class, we chose to contain those methods within the board
+to make sure that we would keep classes loosely coupled and so that our program would not be overrun with setters and getters
+for random variables across classes or associating too many things with one class. This way, the work gets split evenly and allows
+for a cleaner program.
+In terms of wrapper classes, we used the square class which wraps the JavaFX element Rectangle so that we don’t need to get the individual
+JavaFX element for each movement method. We also wrapped the array of squares for the board and the piece in a similar regarding movement and rotation.
+For differentiating between spaces that are occupied and spaces that are not occupied, we used the isFilled Boolean array that is updated based on events
+such as piece moving, rotating and clearing lines. The moveValidity is primarily the method used to check if movement is possible.
+Our clearLines uses the idea of null squares and our isFilled Boolean array rather than clearing by color. We felt that this made
+the most sense because logically the squares should be removed, rather than simply painted over. For clearing the full row, we removed the row graphically,
+then logically set the value of the board in that row to null, and changed the isFilled value to false.
+Then for updating the board, if a square was not null, we moved all the squares above the cleared line down graphically,
+then logically in the array, changed the isFilled values for the squares above and set them to null,
+and set the cleared line to be filled because a new squares has been moved down into it.
+
+Known Bugs:
+
+Debugging Collaborators:
+None
